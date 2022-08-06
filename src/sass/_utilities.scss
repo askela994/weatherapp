@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: $primary-color;
+}
+
+::selection {
+  color: $white-color;
+  background: $primary-color;
+}
+
+%input-button {
+  width: 100%;
+  height: 55px;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  border-radius: 7px;
+}
+
+%temp-span {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: -3px;
+}
+
+.wrapper {
+  width: 400px;
+  background: $white-color;
+  border-radius: 7px;
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
+
+  header {
+    display: flex;
+    font-size: 21px;
+    font-weight: 500;
+    color: $primary-color;
+    padding: 16px 15px;
+    align-items: center;
+    border-bottom: 1px solid $light-color;
+
+    i {
+      font-size: 0em;
+      cursor: pointer;
+      margin-right: 8px;
+    }
+  }
+
+  &.active {
+    header {
+      i {
+        margin-left: 5px;
+        font-size: 30px;
+      }
+    }
+
+    .input-part {
+      display: none;
+    }
+  }
+
+  .input-part {
+    margin: 20px 25px 30px;
+
+    .info-txt {
+      display: none;
+      font-size: 17px;
+      text-align: center;
+      padding: 12px 10px;
+      border-radius: 7px;
+      margin-bottom: 15px;
+
+      &.error {
+        color: $error-color;
+        display: block;
+        background: $error-bg-color;
+        border: 1px solid $error-border-color;
+      }
+
+      &.pending {
+        color: $pending-color;
+        display: block;
+        background: $pending-bg-color;
+        border: 1px solid $pending-border-color;
+      }
+    }
+
+    input {
+      @extend %input-button;
+      text-align: center;
+      padding: 0 15px;
+      border: 1px solid $light-color;
+
+      &:focus,
+      &:valid {
+        border: 2px solid $primary-color;
+      }
+
+      &::placeholder {
+        color: $secondary-color;
+      }
+    }
+
+    button {
+      @extend %input-button;
+      color: $white-color;
+      cursor: pointer;
+      background: $primary-color;
+      transition: 0.3s ease;
+
+      &:hover {
+        background: $primary-color-hover;
+      }
+    }
+
+    .separator {
+      height: 1px;
+      width: 100%;
+      margin: 25px 0;
+      background: $light-color;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before {
+        content: 'or';
+        color: $secondary-color;
+        font-size: 19px;
+        padding: 0 15px;
+        background: $white-color;
+      }
+    }
+  }
+
+  .weather-part {
+    display: none;
+    margin: 30px 0 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    img {
+      max-width: 125px;
+    }
+
+    .temp {
+      display: flex;
+      font-weight: 500;
+      font-size: 72px;
+
+      .numb {
+        font-weight: 600;
+      }
+
+      .deg {
+        font-size: 40px;
+        display: block;
+        margin: 10px 5px 0 0;
+      }
+    }
+
+    .weather {
+      font-size: 21px;
+      text-align: center;
+      margin: -5px 20px 15px;
+    }
+
+    .location {
+      display: flex;
+      font-size: 19px;
+      padding: 0 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      align-items: flex-start;
+
+      i {
+        font-size: 22px;
+        margin: 4px 5px 0 0;
+      }
+    }
+
+    .bottom-details {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      border-top: 1px solid $light-color;
+
+      .column {
+        display: flex;
+        width: 100%;
+        padding: 15px 0;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          color: $primary-color;
+          font-size: 40px;
+        }
+
+        &.humidity {
+          border-left: 1px solid $light-color;
+
+          span {
+            @extend %temp-span;
+          }
+
+          i {
+            font-size: 37px;
+          }
+        }
+
+        .details {
+          margin-left: 3px;
+
+          .temp {
+            @extend %temp-span;
+
+            .deg {
+              margin: 0;
+              font-size: 17px;
+              padding: 0 2px 0 1px;
+            }
+          }
+
+          p {
+            font-size: 14px;
+            margin-top: -6px;
+          }
+        }
+      }
+    }
+  }
+
+  &.active {
+    .weather-part {
+      display: flex;
+    }
+  }
+}
